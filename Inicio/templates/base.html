@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inicio importación de estilos -->
+    <!-- css de Bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <!-- css dashboard de Bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap/dashboard/dashboard.css' %}">
+    <!-- Fin importación de estilos -->
+
+    <title>MOP</title>
+</head>
+<body>
+    <!-- ======================================================== -->
+    <!-- Inicio contenedor: Header -->
+    <!-- ======================================================== -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <!-- Contenedor para el logo -->
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'inicio'%}">MOP</a>
+        <!-- Contenedor para el resto de elementos del header -->
+        <div class="navbar-nav">
+            <!-- Contenedor para el boton de logout-->
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3" href="{% url 'logout'%}">Salir</a>
+            </div>
+        </div>
+    </header>
+    <!-- ======================================================== -->
+    <!-- Fin contenedor: Header -->
+    <!-- ======================================================== -->
+    
+    <!-- ======================================================== -->
+    <!-- Inicio contenedor: container-fluid -->
+    <!-- ======================================================== -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ======================================================== -->
+            <!-- Inicio contenedor: sidebarMenu -->
+            <!-- ======================================================== -->
+            <nav id="sidebarMenu" class="col-sm-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a id="inicio" class="nav-link {{ active.inicio }}" href="{% url 'inicio' %}">
+                                <img class="pb-1" src="{% static 'bootstrap/dist/img/house.svg'%}" alt="inicio">
+                                Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="plantas" class="nav-link {{ active.plantas }}" href="{% url 'plantas' %}">
+                                <img class="pb-1" src="{% static 'bootstrap/dist/img/building.svg'%}" alt="plantas">
+                                Plantas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- ======================================================== -->
+            <!-- Fin contenedor: sidebarMenu -->
+            <!-- ======================================================== -->
+
+            <!-- ======================================================== -->
+            <!-- Inicio contenedor: main -->
+            <!-- ======================================================== -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                
+                {% block content %}
+
+                {% endblock %}
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Inicio importación de scripts -->
+    <!-- Script de jquery -->
+    <script src="{% static 'jquery/jquery-3.6.0.js' %}"></script>
+    <!-- Script de Bootstrap -->
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- Script de MOP -->
+    <script src="{% static 'js/mop.js' %}"></script>    
+    
+</body>
+</html>
