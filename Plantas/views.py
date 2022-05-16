@@ -50,24 +50,3 @@ def EliminarPlanta(request: HttpRequest) -> render:
     planta.activo = False                                           # Modificar atributo de objeto
     planta.save()                                                   # Guardar modificaciones
     return redirect('plantas')                                      # Redireccionar a determinada pagina
-
-@login_required
-def optimizarDespacho(request: HttpRequest) -> render:
-    # Crear lista de indices ingresados por el usuario
-    indices = [
-        request.POST(['id'])
-    ]
-    pass
-
-'''
-====================================================
-    Lógica del obtimizador
-====================================================
-'''
-class OptimizadorDespachos:
-    
-    def __init__(self) -> None:
-        pass
-
-    def verificarDatos(self) -> None:
-        pass

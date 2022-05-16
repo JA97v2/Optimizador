@@ -18,4 +18,5 @@ from . import views # Importar el archivo con las vistas que está en el mismo d
 
 urlpatterns = [
     path('', views.Inicio, name='inicio'),
+    path('optimizarDespacho/', views.optimizarDespacho, name='optimizarDespacho'),
 ]

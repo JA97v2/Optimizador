@@ -11,4 +11,28 @@ def Inicio(request: HttpRequest) -> render:
     activeDicc = {
         'inicio': 'active' 
     }
-    return render(request, 'inicio.html',  {'plantas': plantas, 'active' : activeDicc})
+    return render(request, 'inicio.html', {'plantas': plantas, 'active' : activeDicc})
+
+@login_required
+def optimizarDespacho(request: HttpRequest) -> render:
+    # Crear lista de indices ingresados por el usuario
+    for item in request.POST:
+        print(item)
+    activeDicc = {
+        'inicio': 'active' 
+    }
+    return render(request, 'optimizarDespacho.html', {'active' : activeDicc})
+
+'''
+====================================================
+    Lógica del obtimizador
+====================================================
+'''
+class OptimizadorDespachos:
+    
+    def __init__(self) -> None:
+        # Crear lista de indices de las plantas a optimizar
+        pass
+
+    def verificarDatos(self) -> None:
+        pass
