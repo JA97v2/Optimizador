@@ -27,7 +27,14 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Abreviatura</th>
+                <th scope="col">Limite inferior</th>
+                <th scope="col">Limite superior</th>
+                <th scope="col">Despacho óptimo</th>
+                <th scope="col">Factor de conversión</th>
+                <th scope="col">Coef. grado 3</th>
+                <th scope="col">Coef. grado 2</th>
+                <th scope="col">Coef. grado 1</th>
+                <th scope="col">Coef. grado 0</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -36,7 +43,14 @@
                 <tr>
                     <td class="{{planta.id}}">{{planta.id}}</td>
                     <td class="{{planta.id}}">{{planta.nombre}}</td>
-                    <td class="{{planta.id}}">{{planta.abreviatura}}</td>
+                    <td class="{{planta.id}}">{{planta.limiteInferior}}</td>
+                    <td class="{{planta.id}}">{{planta.limiteSuperior}}</td>
+                    <td class="{{planta.id}}">{{planta.despachoOptimo}}</td>
+                    <td class="{{planta.id}}">{{planta.factorDeConversion}}</td>
+                    <td class="{{planta.id}}">{{planta.coeficienteGrado3}}</td>
+                    <td class="{{planta.id}}">{{planta.coeficienteGrado2}}</td>
+                    <td class="{{planta.id}}">{{planta.coeficienteGrado1}}</td>
+                    <td class="{{planta.id}}">{{planta.coeficienteGrado0}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
                             <button value="{{planta.id}}" onclick="editarPlanta(this.value)" type="button" class="btn btn-sm btn-outline-primary">Editar</button>
@@ -71,9 +85,44 @@
                         <input type="text" placeholder="Nombre" class="form-control" name="nombre">
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="Abreviacion" class="form-label">Abreviación</label>
-                        <input type="text" placeholder="ABV" class="form-control" maxlength="3" name="abreviatura">
+                    <div class="col-md-6">
+                        <label for="limiteInferior" class="form-label">Limite inferior</label>
+                        <input type="number" step="0.00001" placeholder="1" class="form-control" name="limiteInferior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="limiteSuperior" class="form-label">Limite superior</label>
+                        <input type="number" step="0.00001" placeholder="1" class="form-control" name="limiteSuperior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="despachoOptimo" class="form-label">Despacho óptimo</label>
+                        <input type="number" step="0.00001" placeholder="1" class="form-control" name="despachoOptimo">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="factorDeConversion" class="form-label">Factor de conversión</label>
+                        <input type="number" step="0.00000001" placeholder="1" class="form-control" name="factorDeConversion">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado3" class="form-label">Coef. grado 3</label>
+                        <input type="number" step="0.00000001" placeholder="3" class="form-control" name="coeficienteGrado3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado2" class="form-label">Coef. grado 2</label>
+                        <input type="number" step="0.00000001" placeholder="2" class="form-control" name="coeficienteGrado2">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado1" class="form-label">Coef. grado 1</label>
+                        <input type="number" step="0.00000001" placeholder="1" class="form-control" name="coeficienteGrado1">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado0" class="form-label">Coef. grado 0</label>
+                        <input type="number" step="0.00000001" placeholder="0" class="form-control" name="coeficienteGrado0">
                     </div>
 
                     <div class="col-12">
@@ -110,14 +159,50 @@
                         <label for="id" class="form-label">Id</label>
                         <input id="idEditar" type="number" class="form-control" name="id" readonly>
                     </div>
+                    
                     <div class="col-md-12">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombreEditar" class="form-label">Nombre</label>
                         <input id="nombreEditar" type="text" class="form-control" name="nombre">
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="Abreviacion" class="form-label">Abreviación</label>
-                        <input id="abreviacionEditar" type="text" class="form-control" maxlength="3" name="abreviatura">
+                    <div class="col-md-6">
+                        <label for="limiteInferiorEditar" class="form-label">Limite inferior</label>
+                        <input id="limiteInferiorEditar" type="number" step="0.00001" class="form-control" name="limiteInferior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="limiteSuperiorEditar" class="form-label">Limite superior</label>
+                        <input id="limiteSuperiorEditar" type="number" step="0.00001" class="form-control" name="limiteSuperior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="despachoOptimoEditar" class="form-label">Despacho óptimo</label>
+                        <input id="despachoOptimoEditar" type="number" step="0.00001" class="form-control" name="despachoOptimo">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="factorDeConversionEditar" class="form-label">Factor de conversión</label>
+                        <input id="factorDeConversionEditar" type="number" step="0.00000001" class="form-control" name="factorDeConversion">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado3Editar" class="form-label">Coef. grado 3</label>
+                        <input id="coeficienteGrado3Editar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado2Editar" class="form-label">Coef. grado 2</label>
+                        <input id="coeficienteGrado2Editar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado2">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado1Editar" class="form-label">Coef. grado 1</label>
+                        <input id="coeficienteGrado1Editar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado1">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado0Editar" class="form-label">Coef. grado 0</label>
+                        <input id="coeficienteGrado0Editar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado0">
                     </div>
 
                     <div class="col-12">
@@ -154,14 +239,50 @@
                         <label for="id" class="form-label">Id</label>
                         <input id="idEliminar" type="number" class="form-control" name="id" readonly>
                     </div>
+                    
                     <div class="col-md-12">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input id="nombreEliminar" type="text" placeholder="Nombre" class="form-control" name="nombre" readonly>
+                        <label for="nombreEliminar" class="form-label">Nombre</label>
+                        <input id="nombreEliminar" type="text" class="form-control" name="nombre">
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="Abreviacion" class="form-label">Abreviación</label>
-                        <input id="abreviacionEliminar" type="text" placeholder="ABV" class="form-control" maxlength="3" name="abreviatura" readonly>
+                    <div class="col-md-6">
+                        <label for="limiteInferiorEliminar" class="form-label">Limite inferior</label>
+                        <input id="limiteInferiorEliminar" type="number" step="0.00001" class="form-control" name="limiteInferior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="limiteSuperiorEliminar" class="form-label">Limite superior</label>
+                        <input id="limiteSuperiorEliminar" type="number" step="0.00001" class="form-control" name="limiteSuperior">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="despachoOptimoEliminar" class="form-label">Despacho óptimo</label>
+                        <input id="despachoOptimoEliminar" type="number" step="0.00001" class="form-control" name="despachoOptimo">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="factorDeConversionEliminar" class="form-label">Factor de conversión</label>
+                        <input id="factorDeConversionEliminar" type="number" step="0.00000001" class="form-control" name="factorDeConversion">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado3Eliminar" class="form-label">Coef. grado 3</label>
+                        <input id="coeficienteGrado3Eliminar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado3">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado2Eliminar" class="form-label">Coef. grado 2</label>
+                        <input id="coeficienteGrado2Eliminar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado2">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado1Eliminar" class="form-label">Coef. grado 1</label>
+                        <input id="coeficienteGrado1Eliminar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado1">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="coeficienteGrado0Eliminar" class="form-label">Coef. grado 0</label>
+                        <input id="coeficienteGrado0Eliminar" type="number" step="0.00000001" class="form-control" name="coeficienteGrado0">
                     </div>
 
                     <div class="col-12">

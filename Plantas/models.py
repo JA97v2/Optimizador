@@ -10,12 +10,14 @@ class Planta(models.Model):
     coeficienteGrado2 = models.FloatField()
     coeficienteGrado1 = models.FloatField()
     coeficienteGrado0 = models.FloatField()
+    factorDeConversion = models.FloatField()
+    despachoOptimo = models.FloatField()
     activo = models.BooleanField()
 
     def __str__(self) -> str:
-        texto = '{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} '
+        texto = '{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} '
         return texto.format(
             self.id, self.nombre, self.limiteInferior, self.limiteSuperior,
             self.coeficienteGrado3, self.coeficienteGrado2, self.coeficienteGrado1,
-            self.coeficienteGrado0, self.activo
+            self.coeficienteGrado0, self.factorDeConversion, self.despachoOptimo, self.activo
         )
