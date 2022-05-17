@@ -15,9 +15,15 @@ def Inicio(request: HttpRequest) -> render:
 
 @login_required
 def optimizarDespacho(request: HttpRequest) -> render:
-    # Crear lista de indices ingresados por el usuario
-    for item in request.POST:
-        print(item)
+    listaIds = []                                                   # Crear lista vacia para almacenar lista de ids
+    plantas = Planta.objects.filter(activo__exact=True)             # Obtener plantas activas en la base de datos
+    requestPOST = request.POST.dict()                               # Convertir queryDict in dict
+    for planta in plantas:                                          # Obtener los indices de las plantas a optimizar
+        if str(planta.id) in requestPOST:                           # Verificar si el id es clave del diccionario
+            listaIds.append(planta.id)                              # Añadir id a la lista de ids
+
+
+
     activeDicc = {
         'inicio': 'active' 
     }
