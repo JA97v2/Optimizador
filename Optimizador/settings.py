@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'Optimizador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'Optimizador.db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'optimizadordb',
+        'USER': 'postgres',
+        'PASSWORD': 'ja97',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432',
     }
 }
 
