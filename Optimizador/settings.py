@@ -131,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio') # URL redirecting after a successful authentication
 LOGOUT_REDIRECT_URL = reverse_lazy('login') # URL redirecting after a successful logout
+
+import django_heroku
+django_heroku.settings(locals())
