@@ -50,7 +50,7 @@ def optimizarDespacho(request: HttpRequest) -> render:
     activeDicc = {
         'inicio': 'active' 
     }
-    return render(request, 'optimizarDespacho.html', {'active' : activeDicc, 'datos': datos})
+    return render(request, 'optimizarDespacho.html', {'active' : activeDicc, 'datos': datos, 'despacho': despacho})
 
 '''
 ====================================================
@@ -117,11 +117,17 @@ class OptimizadorDespachos:
             self.acumuladoFunciones += self.fps[fp][3] * (x[0] ** 3) + self.fps[fp][2] * (x[0] ** 2) + self.fps[fp][1] * (x[0]) + self.fps[fp][0]
         return 1/self.acumuladoFunciones
 
+    def fcons(self, x):
+        self.fnObjeto = 0
+        for i in range(0, len(self.datos)):
+            self.fnObjeto += x[i]
+        return self.fnObjeto - float(self.despacho)
+
     def optimizar(self, diniciales):
         # Lista con las condiciones iniciales de las plantas
         self.x0 = diniciales      
         self.limites = []
-        self.cons = [({'type':'eq','fun':lambda x: x[0] + x[1] - float(self.despacho)})]
+        self.cons = [({'type':'eq','fun':self.fcons})]
         
         for p in self.condiciones:
             self.limites.append(self.condiciones[p]['lp'])
@@ -139,7 +145,11 @@ class OptimizadorDespachos:
             }
         )
 
-        for i in range(0, len(self.result['x'])):
-            self.datos[i+1]['desp'] = self.result['x'][i]
         # Convertir valores de diccionario a lista, es necesario para que funcione bien en HTML
-        self.datos = self.datos.values()                    
+        self.datos = list(self.datos.values()) 
+        print(self.datos) 
+
+        for i in range(0, len(self.datos)):
+            self.datos[i]['desp'] = round(self.result['x'][i],3)
+
+        print(self.datos)               

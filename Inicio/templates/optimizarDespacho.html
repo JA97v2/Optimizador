@@ -3,7 +3,10 @@
 
 {% block content %}
 <h2>Despachos por planta </h2>
-
+<div class="col-md-2">
+    <label for="despacho" class="form-label">Despacho</label>
+    <input type="number" step="1" value="{{despacho}}" class="form-control" name="despacho" readonly>
+</div>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
