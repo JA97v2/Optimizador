@@ -12,10 +12,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from django.urls import reverse_lazy
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -122,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -134,3 +144,14 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login') # URL redirecting after a successful
 
 import django_heroku
 django_heroku.settings(locals())
+
+MIDDLEWARE_CLASSES = (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
